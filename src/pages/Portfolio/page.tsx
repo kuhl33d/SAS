@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { portfolioProjects } from "../../lib/constants"
 import PageHeader from "../../components/page-header"
 import ProjectCard from "../../components/project-card"
+import ProjectDetailModal from "../../components/project-detail-modal"
 import { Button } from "../../components/ui/button"
 
 export default function PortfolioPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All")
   const [filteredProjects, setFilteredProjects] = useState(portfolioProjects)
+  const [selectedProject, setSelectedProject] = useState<typeof portfolioProjects[0] | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   
   // Extract unique categories
   const categories = ["All", ...new Set(portfolioProjects.map(project => project.category))]
@@ -18,6 +21,19 @@ export default function PortfolioPage() {
       setFilteredProjects(portfolioProjects.filter(project => project.category === selectedCategory))
     }
   }, [selectedCategory])
+  
+  const openProjectDetails = (project: typeof portfolioProjects[0]) => {
+    setSelectedProject(project)
+    setIsModalOpen(true)
+    // Prevent scrolling while modal is open
+    document.body.style.overflow = 'hidden'
+  }
+  
+  const closeProjectDetails = () => {
+    setIsModalOpen(false)
+    // Re-enable scrolling
+    document.body.style.overflow = 'auto'
+  }
   
   return (
     <>
@@ -50,6 +66,7 @@ export default function PortfolioPage() {
               description={project.description}
               image={project.image}
               year={project.year}
+              onClick={() => openProjectDetails(project)}
             />
           ))}
         </div>
@@ -60,6 +77,15 @@ export default function PortfolioPage() {
           </div>
         )}
       </section>
+      
+      {/* Project detail modal */}
+      {selectedProject && (
+        <ProjectDetailModal 
+          isOpen={isModalOpen}
+          onClose={closeProjectDetails}
+          project={selectedProject}
+        />
+      )}
     </>
   )
 } 

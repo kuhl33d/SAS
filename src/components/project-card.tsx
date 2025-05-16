@@ -6,11 +6,12 @@ interface ProjectCardProps {
   description: string
   image: string
   year: string
+  onClick?: () => void
 }
 
-export default function ProjectCard({ title, category, description, image, year }: ProjectCardProps) {
+export default function ProjectCard({ title, category, description, image, year, onClick }: ProjectCardProps) {
   return (
-    <Card className="overflow-hidden h-full">
+    <Card className="overflow-hidden h-full cursor-pointer transition-transform hover:scale-[1.02]" onClick={onClick}>
       <div className="relative h-[250px] sm:h-[280px] md:h-[300px]">
         <img
           src={image || "/placeholder.svg"}
