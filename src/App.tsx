@@ -1,28 +1,30 @@
 import { Route, Routes } from 'react-router-dom'
 import { ThemeProvider } from './components/theme-provider'
 import Header from './components/header'
+import Footer from './components/footer'
 
 // Import page components 
-import Home from './pages/home'
-import About from './pages/about'
-import Services from './pages/services'
-import Portfolio from './pages/portfolio'
-import Contact from './pages/contact'
+import HomePage from './pages/home'
+import AboutPage from './pages/about'
+import ServicesPage from './pages/services'
+import PortfolioPage from './pages/portfolio'
+import ContactPage from './pages/contact'
 
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-background font-sans antialiased">
+      <div className="min-h-screen bg-background font-sans antialiased flex flex-col">
         <Header />
-        <main>
+        <main className="flex-grow">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/portfolio" element={<PortfolioPage />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </ThemeProvider>
   )
