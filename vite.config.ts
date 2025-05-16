@@ -4,8 +4,7 @@ import { resolve } from "path";
 // vite.config.ts
 
 export default defineConfig({
-
-  base: "/react-vite-shadcn-ui-template/",
+  base: "/SAS/",
   plugins: [react()],
   resolve: {
     alias: {

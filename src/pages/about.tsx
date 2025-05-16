@@ -15,7 +15,7 @@ export default function AboutPage() {
           <div className="space-y-4">
             <h2 className="text-3xl font-bold">Our Story</h2>
             <p className="text-muted-foreground">
-              Founded in 2007, Concept Interiors has grown to become a leading interior design and fit out company. Our
+              Founded in 2007, Smart Architecture Solutions (SAS) has grown to become a leading architectural design firm. Our
               passion for creating exceptional spaces and commitment to quality has earned us the trust of countless
               clients across residential and commercial sectors.
             </p>

@@ -1,14 +1,15 @@
 {
-  "name": "react-vite-ui",
+  "name": "smart-architecture-solutions",
   "private": true,
-  "version": "0.3.0",
+  "version": "1.0.0",
   "type": "module",
-  "homepage": "https://DarinelGuillen.github.io/react-vite-shadcn-ui-template",
+  "homepage": "https://DarinelGuillen.github.io/SAS",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist && cp dist/index.html dist/404.html"
   },
   "dependencies": {

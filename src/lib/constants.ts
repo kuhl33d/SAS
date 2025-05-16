@@ -1,6 +1,6 @@
 export const siteConfig = {
-  name: "Concept Interiors",
-  description: "Interior Design & Fit Out Solutions",
+  name: "S.A.S",
+  description: "Smart Architecture Solutions",
   mainNav: [
     {
       title: "Home",
@@ -32,26 +32,26 @@ export const siteConfig = {
 
 export const services = [
   {
-    title: "Interior Design",
-    description: "Comprehensive interior design solutions for residential and commercial spaces",
+    title: "Architectural Design",
+    description: "Comprehensive architectural design solutions for residential and commercial spaces",
     image: "/placeholder.svg",
-    features: ["Space Planning", "Color Consultation", "Material Selection"],
+    features: ["Space Planning", "Concept Development", "Technical Drawings"],
   },
   {
-    title: "Fit Out Services",
-    description: "Complete fit out services from concept to completion",
+    title: "Construction Management",
+    description: "Complete project management services from concept to completion",
     image: "/placeholder.svg",
-    features: ["Project Management", "Construction", "Installation"],
+    features: ["Project Supervision", "Timeline Management", "Quality Control"],
   },
   {
-    title: "Furniture Solutions",
-    description: "Custom furniture design and procurement",
+    title: "Sustainable Solutions",
+    description: "Eco-friendly and energy-efficient building designs",
     image: "/placeholder.svg",
-    features: ["Custom Design", "Manufacturing", "Installation"],
+    features: ["Green Building", "Energy Efficiency", "Sustainable Materials"],
   },
   {
     title: "Consultation",
-    description: "Expert consultation for your interior projects",
+    description: "Expert consultation for your architectural projects",
     image: "/placeholder.svg",
     features: ["Site Analysis", "Feasibility Studies", "Cost Estimation"],
   },
@@ -59,44 +59,44 @@ export const services = [
 
 export const portfolioProjects = [
   {
-    title: "Luxury Villa",
+    title: "Modern Residence",
     category: "Residential",
-    description: "Modern luxury villa with custom interior design",
+    description: "Contemporary luxury home with sustainable features",
     image: "/placeholder.svg",
     year: "2023",
   },
   {
-    title: "Corporate Office",
+    title: "Corporate Headquarters",
     category: "Commercial",
-    description: "Contemporary office space design",
+    description: "Innovative office space design focused on collaboration",
     image: "/placeholder.svg",
     year: "2023",
   },
   {
     title: "Boutique Hotel",
     category: "Hospitality",
-    description: "Elegant hotel interior design",
+    description: "Elegant hotel with distinctive architectural elements",
     image: "/placeholder.svg",
     year: "2022",
   },
   {
-    title: "Restaurant",
+    title: "Urban Restaurant",
     category: "Food & Beverage",
-    description: "Modern restaurant design and fit out",
+    description: "Modern restaurant design with open-concept layout",
     image: "/placeholder.svg",
     year: "2022",
   },
   {
-    title: "Retail Store",
+    title: "Flagship Store",
     category: "Retail",
-    description: "Innovative retail space design",
+    description: "Innovative retail space with experiential design features",
     image: "/placeholder.svg",
     year: "2022",
   },
   {
-    title: "Penthouse",
+    title: "Urban Penthouse",
     category: "Residential",
-    description: "Luxury penthouse interior design",
+    description: "Luxury penthouse with smart home technology integration",
     image: "/placeholder.svg",
     year: "2021",
   },
@@ -105,20 +105,20 @@ export const portfolioProjects = [
 export const testimonials = [
   {
     name: "John Doe",
-    role: "Homeowner",
-    content: "Outstanding service and attention to detail. Highly recommended!",
+    role: "Property Developer",
+    content: "Outstanding architectural solutions with exceptional attention to detail. Highly recommended!",
     image: "/placeholder.svg",
   },
   {
     name: "Jane Smith",
     role: "Business Owner",
-    content: "Professional team that delivered beyond our expectations.",
+    content: "Professional team that delivered innovative design solutions beyond our expectations.",
     image: "/placeholder.svg",
   },
   {
     name: "Michael Johnson",
-    role: "Property Developer",
-    content: "Excellent work ethic and creative solutions.",
+    role: "Architecture Investor",
+    content: "Excellent work ethic and creative architectural solutions for our commercial project.",
     image: "/placeholder.svg",
   },
 ]

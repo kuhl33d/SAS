@@ -8,7 +8,7 @@ export default function ServicesPage() {
     <>
       <PageHeader 
         title="Our Services" 
-        description="Comprehensive interior design and fit out solutions"
+        description="Comprehensive architectural design and construction solutions"
       />
       <section className="container py-12 md:py-24">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

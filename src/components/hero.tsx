@@ -1,5 +1,5 @@
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import React from 'react'
+import { Button } from "../components/ui/button"
 
 export default function Hero() {
   return (
@@ -8,10 +8,10 @@ export default function Hero() {
         <div className="space-y-8">
           <div className="space-y-6">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-              Transform Your Space Into Something Extraordinary
+              Transform Your Space With Innovative Architecture
             </h1>
             <p className="text-lg text-muted-foreground">
-              Award-winning interior design studio creating timeless spaces that inspire and elevate your lifestyle.
+              Award-winning architectural design studio creating timeless spaces that inspire and elevate your lifestyle.
             </p>
           </div>
           <div className="flex flex-wrap gap-4">
@@ -22,18 +22,14 @@ export default function Hero() {
           </div>
         </div>
         <div className="relative h-[600px] hidden lg:block">
-          <Image
+          <img
             src="/placeholder.svg"
-            alt="Interior Design"
-            width={500}
-            height={600}
+            alt="Architectural Design"
             className="absolute right-0 top-0 rounded-tl-lg rounded-bl-lg object-cover h-[400px] w-[400px]"
           />
-          <Image
+          <img
             src="/placeholder.svg"
-            alt="Interior Design"
-            width={400}
-            height={500}
+            alt="Architectural Design"
             className="absolute left-0 bottom-0 rounded-lg object-cover h-[350px] w-[300px] border-8 border-background shadow-xl"
           />
           <div className="absolute left-[45%] top-[45%] bg-primary text-primary-foreground rounded-lg py-4 px-6 shadow-lg">
