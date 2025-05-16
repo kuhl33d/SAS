@@ -23,6 +23,16 @@ export default function PortfolioPage() {
     setSelectedProject(null)
   }, [selectedCategory])
   
+  const handleProjectClick = (project: typeof portfolioProjects[0]) => {
+    console.log("Project clicked:", project.title);
+    // Toggle the project selection
+    if (selectedProject?.title === project.title) {
+      setSelectedProject(null); // Deselect if already selected
+    } else {
+      setSelectedProject(project); // Select the new project
+    }
+  };
+  
   return (
     <>
       <PageHeader 
@@ -45,7 +55,7 @@ export default function PortfolioPage() {
           ))}
         </div>
         
-        <div className="grid gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-8">
           {filteredProjects.map((project, index) => (
             <div 
               key={index}
@@ -57,28 +67,33 @@ export default function PortfolioPage() {
                 description={project.description}
                 image={project.image}
                 year={project.year}
-                onClick={() => setSelectedProject(selectedProject?.title === project.title ? null : project)}
+                onClick={() => handleProjectClick(project)}
               />
             </div>
           ))}
         </div>
         
         {filteredProjects.length === 0 && (
-          <div className="text-center py-12">
+          <div className="text-center py-12 mb-8">
             <p className="text-muted-foreground">No projects found in this category.</p>
           </div>
         )}
 
+        {/* Debug output */}
+        <div className="my-4 p-4 bg-slate-100 rounded">
+          <p>Currently selected: {selectedProject ? selectedProject.title : 'No project selected'}</p>
+        </div>
+
         {/* Selected project extended details */}
         {selectedProject && (
-          <div className="mt-16 relative">
+          <div className="mt-8 relative border-2 border-primary p-8 rounded-lg">
             <Button
-              variant="ghost"
+              variant="outline"
               size="icon"
-              className="absolute -top-2 right-0"
+              className="absolute -top-3 -right-3 bg-background rounded-full"
               onClick={() => setSelectedProject(null)}
             >
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5" />
             </Button>
 
             <div className="space-y-8">
@@ -87,48 +102,52 @@ export default function PortfolioPage() {
                   <h2 className="text-2xl font-bold mb-4">{selectedProject.title}</h2>
                   <div className="space-y-4">
                     <p className="text-muted-foreground">{selectedProject.fullDescription || selectedProject.description}</p>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-4 mt-4">
                       {selectedProject.details?.client && (
-                        <div>
+                        <div className="bg-slate-50 p-3 rounded">
                           <h4 className="font-semibold mb-1">Client</h4>
                           <p className="text-sm text-muted-foreground">{selectedProject.details.client}</p>
                         </div>
                       )}
                       {selectedProject.details?.location && (
-                        <div>
+                        <div className="bg-slate-50 p-3 rounded">
                           <h4 className="font-semibold mb-1">Location</h4>
                           <p className="text-sm text-muted-foreground">{selectedProject.details.location}</p>
                         </div>
                       )}
                       {selectedProject.details?.completion && (
-                        <div>
+                        <div className="bg-slate-50 p-3 rounded">
                           <h4 className="font-semibold mb-1">Completion</h4>
                           <p className="text-sm text-muted-foreground">{selectedProject.details.completion}</p>
                         </div>
                       )}
-                      <div>
+                      <div className="bg-slate-50 p-3 rounded">
                         <h4 className="font-semibold mb-1">Year</h4>
                         <p className="text-sm text-muted-foreground">{selectedProject.year}</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Project Details</h4>
-                  <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                    <li>Category: {selectedProject.category}</li>
-                    {selectedProject.details?.area && <li>Area: {selectedProject.details.area}</li>}
-                    {selectedProject.details?.architect && <li>Architect: {selectedProject.details.architect}</li>}
+                <div className="bg-slate-50 p-4 rounded">
+                  <h4 className="font-semibold mb-3">Project Details</h4>
+                  <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                    <li>Category: <span className="font-medium">{selectedProject.category}</span></li>
+                    {selectedProject.details?.area && (
+                      <li>Area: <span className="font-medium">{selectedProject.details.area}</span></li>
+                    )}
+                    {selectedProject.details?.architect && (
+                      <li>Architect: <span className="font-medium">{selectedProject.details.architect}</span></li>
+                    )}
                   </ul>
                 </div>
               </div>
 
               {selectedProject.gallery && selectedProject.gallery.length > 0 && (
-                <div>
+                <div className="mt-8">
                   <h3 className="text-xl font-semibold mb-4">Project Gallery</h3>
                   <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                     {selectedProject.gallery.map((image, index) => (
-                      <div key={index} className="aspect-video relative rounded-lg overflow-hidden">
+                      <div key={index} className="aspect-video relative rounded-lg overflow-hidden border border-slate-200">
                         <img
                           src={image || "/placeholder.svg"}
                           alt={`${selectedProject.title} - Image ${index + 1}`}
