@@ -1,4 +1,4 @@
-import Image from "next/image"
+import React from 'react'
 
 export default function Partners() {
   const partners = Array(12)
@@ -21,12 +21,10 @@ export default function Partners() {
               key={index}
               className="flex items-center justify-center p-4 bg-accent/10 rounded-lg hover:bg-accent/20 transition-colors"
             >
-              <Image
+              <img
                 src={partner.logo || "/placeholder.svg"}
                 alt={partner.name}
-                width={120}
-                height={60}
-                className="opacity-80 hover:opacity-100 transition-opacity"
+                className="opacity-80 hover:opacity-100 transition-opacity h-[60px] w-[120px] object-contain"
               />
             </div>
           ))}

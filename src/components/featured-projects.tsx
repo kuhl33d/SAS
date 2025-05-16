@@ -1,10 +1,10 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
-import { Button } from "@/components/ui/button"
-import ProjectCard from "@/components/project-card"
+import React, { useState, useEffect, useCallback } from "react"
+import { Link } from "react-router-dom"
+import { Button } from "./ui/button"
+import ProjectCard from "./project-card"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
-import Link from "next/link"
 
 interface Project {
   title: string
@@ -36,7 +36,7 @@ const extendedProjects = [
   {
     title: "Boutique Hotel",
     category: "Hospitality",
-    description: "Elegant boutique hotel interior",
+    description: "Elegant boutique hotel architecture",
     image: "/placeholder.svg",
     year: "2023",
   },
@@ -57,7 +57,7 @@ const extendedProjects = [
   {
     title: "Fine Dining Restaurant",
     category: "Hospitality",
-    description: "Upscale restaurant interior",
+    description: "Upscale restaurant architectural design",
     image: "/placeholder.svg",
     year: "2023",
   },
@@ -96,7 +96,7 @@ export default function FeaturedProjects({ projects = extendedProjects }: Featur
             <p className="text-muted-foreground">Explore our latest and most impactful work</p>
           </div>
           <Button variant="outline" asChild>
-            <Link href="/portfolio" className="flex items-center gap-2">
+            <Link to="/portfolio" className="flex items-center gap-2">
               View All Projects
               <ArrowRight className="h-4 w-4" />
             </Link>

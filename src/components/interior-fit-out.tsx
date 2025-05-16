@@ -1,27 +1,27 @@
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import React from 'react'
+import { Button } from "./ui/button"
 
-export default function InteriorFitOut() {
+export default function ArchitecturalDesign() {
   return (
     <section className="py-20 bg-background dark:bg-primary">
       <div className="container">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <Image src="/placeholder.svg" alt="Interior Fit Out" width={500} height={400} className="rounded-lg" />
+          <img src="/placeholder.svg" alt="Architectural Design" className="rounded-lg w-full h-auto" />
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold">Interior Fit Out</h2>
+            <h2 className="text-3xl font-bold">Architectural Design</h2>
             <p className="text-muted-foreground">
-              Transform your space with our comprehensive interior fit-out solutions. From initial concept to final
+              Transform your vision into reality with our comprehensive architectural design solutions. From initial concept to final
               execution, we handle every aspect of your project with meticulous attention to detail and uncompromising
               quality standards.
             </p>
             <ul className="space-y-4">
               <li className="flex items-center space-x-2">
                 <span className="h-2 w-2 rounded-full bg-primary dark:bg-accent" />
-                <span>Space Planning & Design</span>
+                <span>Concept Development & Planning</span>
               </li>
               <li className="flex items-center space-x-2">
                 <span className="h-2 w-2 rounded-full bg-primary dark:bg-accent" />
-                <span>Custom Furniture Solutions</span>
+                <span>Sustainable Building Solutions</span>
               </li>
               <li className="flex items-center space-x-2">
                 <span className="h-2 w-2 rounded-full bg-primary dark:bg-accent" />
