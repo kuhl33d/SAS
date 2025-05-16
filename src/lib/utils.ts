@@ -7,13 +7,30 @@ export function cn(...inputs: ClassValue[]) {
 
 /**
  * Helper function to ensure image paths include the correct base path
- * This is needed because Vite is configured with base: "/SAS/"
+ * This is needed because Vite is configured with base: "/SAS/" in production
+ * but uses "/" in development
  */
 export function getImagePath(path: string): string {
   if (!path) return "";
   
-  // If the path already has the base URL or is an absolute URL, return it as is
-  if (path.startsWith("/SAS/") || path.startsWith("http")) {
+  // If path is an absolute URL, return it as is
+  if (path.startsWith("http")) {
+    return path;
+  }
+  
+  // If we're in a development environment (localhost or GitHub Codespaces),
+  // just ensure the path starts with a slash
+  const isDevelopment = window.location.hostname.includes('localhost') || 
+                        window.location.hostname.includes('github.dev') ||
+                        window.location.hostname.includes('github.io');
+  
+  if (isDevelopment) {
+    return path.startsWith('/') ? path : `/${path}`;
+  }
+  
+  // Production environment: add the /SAS/ prefix
+  // If the path already has the base URL, return it as is
+  if (path.startsWith("/SAS/")) {
     return path;
   }
   
