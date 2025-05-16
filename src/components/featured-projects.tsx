@@ -64,14 +64,37 @@ const extendedProjects = [
 export default function FeaturedProjects({ projects = extendedProjects }: FeaturedProjectsProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Check if we're on mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile)
+    }
+  }, [])
 
   const slideToNext = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex === projects.length - 3 ? 0 : prevIndex + 1))
-  }, [projects.length])
+    if (isMobile) {
+      setCurrentIndex((prevIndex) => (prevIndex === projects.length - 1 ? 0 : prevIndex + 1))
+    } else {
+      setCurrentIndex((prevIndex) => (prevIndex === projects.length - 3 ? 0 : prevIndex + 1))
+    }
+  }, [projects.length, isMobile])
 
-  const slidePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? projects.length - 3 : prevIndex - 1))
-  }
+  const slidePrev = useCallback(() => {
+    if (isMobile) {
+      setCurrentIndex((prevIndex) => (prevIndex === 0 ? projects.length - 1 : prevIndex - 1))
+    } else {
+      setCurrentIndex((prevIndex) => (prevIndex === 0 ? projects.length - 3 : prevIndex - 1))
+    }
+  }, [projects.length, isMobile])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -87,13 +110,13 @@ export default function FeaturedProjects({ projects = extendedProjects }: Featur
 
   return (
     <section className="bg-secondary/10">
-      <div className="container py-24">
-        <div className="flex items-center justify-between mb-12">
+      <div className="container py-16 md:py-24">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 sm:mb-12">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight">Featured Projects</h2>
-            <p className="text-muted-foreground">Explore our latest and most impactful work</p>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Featured Projects</h2>
+            <p className="text-sm md:text-base text-muted-foreground">Explore our latest and most impactful work</p>
           </div>
-          <Button variant="outline" asChild>
+          <Button variant="outline" asChild className="self-start sm:self-auto">
             <Link to="/portfolio" className="flex items-center gap-2">
               View All Projects
               <ArrowRight className="h-4 w-4" />
@@ -102,13 +125,23 @@ export default function FeaturedProjects({ projects = extendedProjects }: Featur
         </div>
         <div className="relative">
           <div
-            className="flex gap-8 transition-transform duration-500 ease-in-out overflow-hidden"
-            style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
+            className="flex gap-4 md:gap-8 transition-transform duration-500 ease-in-out overflow-hidden"
+            style={{ 
+              transform: isMobile 
+                ? `translateX(-${currentIndex * 100}%)` 
+                : `translateX(-${currentIndex * (100 / 3)}%)` 
+            }}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
             {projects.map((project, index) => (
-              <div key={index} className="min-w-[calc(33.333%-1.333rem)]">
+              <div 
+                key={index} 
+                className={isMobile 
+                  ? "min-w-full" 
+                  : "min-w-[calc(100%-2rem)] sm:min-w-[calc(50%-1rem)] md:min-w-[calc(33.333%-1.333rem)]"
+                }
+              >
                 <ProjectCard {...project} />
               </div>
             ))}
