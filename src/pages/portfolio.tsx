@@ -4,6 +4,7 @@ import PageHeader from "../components/page-header"
 import ProjectCard from "../components/project-card"
 import { Button } from "../components/ui/button"
 import { X } from 'lucide-react'
+import { getImagePath } from "../lib/utils"
 
 export default function PortfolioPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All")
@@ -144,9 +145,14 @@ export default function PortfolioPage() {
                     {selectedProject.gallery.map((image, index) => (
                       <div key={index} className="aspect-video relative rounded-lg overflow-hidden border border-slate-200">
                         <img
-                          src={image || "/placeholder.svg"}
+                          src={getImagePath(image) || getImagePath("/placeholder.svg")}
                           alt={`${selectedProject.title} - Image ${index + 1}`}
                           className="absolute inset-0 w-full h-full object-cover"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.onerror = null;
+                            target.src = getImagePath("/placeholder.jpg");
+                          }}
                         />
                       </div>
                     ))}

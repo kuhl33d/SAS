@@ -1,4 +1,5 @@
 import { Card, CardContent } from "./ui/card"
+import { getImagePath } from "../lib/utils"
 
 interface ProjectCardProps {
   title: string
@@ -24,9 +25,15 @@ export default function ProjectCard({ title, category, description, image, year,
     >
       <div className="relative h-[250px] sm:h-[280px] md:h-[300px]">
         <img
-          src={image || "/placeholder.svg"}
+          src={getImagePath(image) || getImagePath("/placeholder.svg")}
           alt={title}
           className="absolute inset-0 object-cover w-full h-full transition duration-300 group-hover:scale-105"
+          onError={(e) => {
+            // Fallback to placeholder.jpg if SVG fails to load
+            const target = e.target as HTMLImageElement;
+            target.onerror = null; // Prevent infinite loops
+            target.src = getImagePath("/placeholder.jpg"); 
+          }}
         />
       </div>
       <CardContent className="p-4 sm:p-5 md:p-6 bg-background">

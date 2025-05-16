@@ -1,5 +1,6 @@
 import { Check } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
+import { getImagePath } from "../lib/utils"
 
 interface ServiceCardProps {
   title: string
@@ -12,7 +13,16 @@ export default function ServiceCard({ title, description, image, features }: Ser
   return (
     <Card className="overflow-hidden">
       <div className="relative h-[200px]">
-        <img src={image || "/placeholder.svg"} alt={title} className="absolute inset-0 object-cover w-full h-full" />
+        <img 
+          src={getImagePath(image) || getImagePath("/placeholder.svg")} 
+          alt={title} 
+          className="absolute inset-0 object-cover w-full h-full" 
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.onerror = null;
+            target.src = getImagePath("/placeholder.jpg");
+          }}
+        />
       </div>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
