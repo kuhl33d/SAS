@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "./ui/button"
+import { Link } from "react-router-dom"
 
 export default function CTASection() {
   return (
@@ -10,9 +11,11 @@ export default function CTASection() {
             Let's create something exceptional together. Contact us for a free consultation.
           </p>
           <div className="flex justify-center gap-4">
-            <Button size="lg">Get Started</Button>
-            <Button size="lg" variant="outline">
-              Learn More
+            <Button size="lg" asChild>
+              <Link to="/contact">Get Started</Link>
+            </Button>
+            <Button size="lg" variant="outline" asChild>
+              <Link to="/about">Learn More</Link>
             </Button>
           </div>
         </div>

@@ -14,14 +14,33 @@ export default function PortfolioPage() {
   // Extract unique categories
   const categories = ["All", ...new Set(portfolioProjects.map(project => project.category))]
   
+  // Check URL parameters for project selection
+  useEffect(() => {
+    // Get the project parameter from URL
+    const params = new URLSearchParams(window.location.search);
+    const projectTitle = params.get('project');
+    
+    if (projectTitle) {
+      // Find the project by title
+      const project = portfolioProjects.find(p => p.title === projectTitle);
+      if (project) {
+        setSelectedProject(project);
+        // Set category to match the project's category
+        setSelectedCategory(project.category);
+      }
+    }
+  }, []);
+  
   useEffect(() => {
     if (selectedCategory === "All") {
       setFilteredProjects(portfolioProjects)
     } else {
       setFilteredProjects(portfolioProjects.filter(project => project.category === selectedCategory))
     }
-    // Reset selected project when changing category
-    setSelectedProject(null)
+    // Reset selected project when changing category (but only if not coming from a direct URL)
+    if (!window.location.search.includes('project=')) {
+      setSelectedProject(null)
+    }
   }, [selectedCategory])
   
   const handleProjectClick = (project: typeof portfolioProjects[0]) => {
@@ -31,6 +50,11 @@ export default function PortfolioPage() {
       setSelectedProject(null); // Deselect if already selected
     } else {
       setSelectedProject(project); // Select the new project
+      
+      // Update URL with the project title (for bookmarking/sharing)
+      const url = new URL(window.location.href);
+      url.searchParams.set('project', project.title);
+      window.history.pushState({}, '', url);
     }
   };
   
@@ -87,7 +111,13 @@ export default function PortfolioPage() {
               variant="outline"
               size="icon"
               className="absolute -top-3 -right-3 bg-background rounded-full"
-              onClick={() => setSelectedProject(null)}
+              onClick={() => {
+                setSelectedProject(null);
+                // Remove project parameter from URL
+                const url = new URL(window.location.href);
+                url.searchParams.delete('project');
+                window.history.pushState({}, '', url);
+              }}
             >
               <X className="h-5 w-5" />
             </Button>

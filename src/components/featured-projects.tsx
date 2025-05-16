@@ -3,65 +3,32 @@ import { Link } from "react-router-dom"
 import { Button } from "./ui/button"
 import ProjectCard from "./project-card"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
+import { portfolioProjects } from "../lib/constants"
+import { getImagePath } from "../lib/utils"
 
+// Use the same interface as in portfolio.tsx to ensure compatibility
 interface Project {
   title: string
   category: string
   description: string
   image: string
   year: string
+  details?: {
+    client?: string
+    location?: string
+    architect?: string
+    area?: string
+    completion?: string
+  }
+  fullDescription?: string
+  gallery?: string[]
 }
 
 interface FeaturedProjectsProps {
-  projects: Project[]
+  projects?: Project[]
 }
 
-const extendedProjects = [
-  {
-    title: "Modern Villa",
-    category: "Residential",
-    description: "Luxurious modern villa with minimalist design",
-    image: "/placeholder.svg",
-    year: "2024",
-  },
-  {
-    title: "Tech Hub Office",
-    category: "Commercial",
-    description: "Contemporary office space for a tech company",
-    image: "/placeholder.svg",
-    year: "2024",
-  },
-  {
-    title: "Boutique Hotel",
-    category: "Hospitality",
-    description: "Elegant boutique hotel architecture",
-    image: "/placeholder.svg",
-    year: "2023",
-  },
-  {
-    title: "Urban Apartment",
-    category: "Residential",
-    description: "Modern urban living space",
-    image: "/placeholder.svg",
-    year: "2023",
-  },
-  {
-    title: "Wellness Center",
-    category: "Commercial",
-    description: "Relaxing wellness center design",
-    image: "/placeholder.svg",
-    year: "2023",
-  },
-  {
-    title: "Fine Dining Restaurant",
-    category: "Hospitality",
-    description: "Upscale restaurant architectural design",
-    image: "/placeholder.svg",
-    year: "2023",
-  },
-]
-
-export default function FeaturedProjects({ projects = extendedProjects }: FeaturedProjectsProps) {
+export default function FeaturedProjects({ projects = portfolioProjects.slice(0, 6) }: FeaturedProjectsProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -95,6 +62,12 @@ export default function FeaturedProjects({ projects = extendedProjects }: Featur
       setCurrentIndex((prevIndex) => (prevIndex === 0 ? projects.length - 3 : prevIndex - 1))
     }
   }, [projects.length, isMobile])
+
+  // Function to handle project click
+  const handleProjectClick = (project: Project) => {
+    // Navigate to portfolio page with the specific project
+    window.location.href = `/portfolio?project=${encodeURIComponent(project.title)}`;
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -142,7 +115,10 @@ export default function FeaturedProjects({ projects = extendedProjects }: Featur
                   : "min-w-[calc(100%-2rem)] sm:min-w-[calc(50%-1rem)] md:min-w-[calc(33.333%-1.333rem)]"
                 }
               >
-                <ProjectCard {...project} />
+                <ProjectCard 
+                  {...project} 
+                  onClick={() => handleProjectClick(project)}
+                />
               </div>
             ))}
           </div>

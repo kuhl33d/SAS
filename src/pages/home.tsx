@@ -13,7 +13,7 @@ export default function Home() {
       <Hero />
       <Services services={services.slice(0, 3)} />
       <About />
-      <FeaturedProjects projects={portfolioProjects.slice(0, 3)} />
+      <FeaturedProjects projects={portfolioProjects.slice(0, 6)} />
       <Stats stats={stats} />
       <Testimonials testimonials={testimonials} />
       <CTASection />

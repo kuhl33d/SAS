@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from "./ui/button"
 import { Link } from "react-router-dom"
+import { getImagePath } from "../lib/utils"
 
 export default function Hero() {
   return (
@@ -26,14 +27,24 @@ export default function Hero() {
         </div>
         <div className="relative h-[300px] md:h-[450px] lg:h-[600px] mt-8 lg:mt-0">
           <img
-            src="/placeholder.svg"
+            src={getImagePath("/placeholder.svg")}
             alt="Architectural Design"
             className="absolute right-0 top-0 rounded-tl-lg rounded-bl-lg object-cover h-[200px] w-[200px] md:h-[300px] md:w-[300px] lg:h-[400px] lg:w-[400px]"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.onerror = null;
+              target.src = getImagePath("/placeholder.jpg");
+            }}
           />
           <img
-            src="/placeholder.svg"
+            src={getImagePath("/placeholder.svg")}
             alt="Architectural Design"
             className="absolute left-0 bottom-0 rounded-lg object-cover h-[180px] w-[160px] md:h-[250px] md:w-[220px] lg:h-[350px] lg:w-[300px] border-4 md:border-8 border-background shadow-xl"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.onerror = null;
+              target.src = getImagePath("/placeholder.jpg");
+            }}
           />
           <div className="absolute left-[45%] top-[45%] bg-primary text-primary-foreground rounded-lg py-3 px-4 md:py-4 md:px-6 shadow-lg">
             <p className="text-xs md:text-sm font-medium">Since</p>
