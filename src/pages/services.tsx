@@ -13,7 +13,13 @@ export default function ServicesPage() {
       <section className="container py-12 md:py-24">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
-            <ServiceCard key={index} service={service} />
+            <ServiceCard 
+              key={index} 
+              title={service.title}
+              description={service.description}
+              image={service.image}
+              features={service.features}
+            />
           ))}
         </div>
       </section>
