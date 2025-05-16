@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://DarinelGuillen.github.io/SAS",
+  "homepage": "https://kuhl33d.github.io/SAS",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
