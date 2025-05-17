@@ -4,7 +4,7 @@ import { resolve } from "path";
 // vite.config.ts
 
 // Check if we're in a GitHub Codespace/development environment
-const isDevEnvironment = process.env.CODESPACES || process.env.NODE_ENV === 'development';
+const isDevEnvironment = process.env.NODE_ENV === 'development';
 
 export default defineConfig({
   // Use root path for development, "/SAS/" for production
