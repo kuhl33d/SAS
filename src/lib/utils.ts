@@ -18,11 +18,9 @@ export function getImagePath(path: string): string {
     return path;
   }
   
-  // If we're in a development environment (localhost or GitHub Codespaces),
-  // just ensure the path starts with a slash
+  // If we're in a development environment (localhost or GitHub Codespaces)
   const isDevelopment = window.location.hostname.includes('localhost') || 
-                        window.location.hostname.includes('github.dev') ||
-                        window.location.hostname.includes('github.io');
+                        window.location.hostname.includes('github.dev');
   
   if (isDevelopment) {
     return path.startsWith('/') ? path : `/${path}`;
